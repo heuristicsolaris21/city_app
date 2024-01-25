@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "645444337466",
+    "project_id": "cityapp-5a6b5",
+    "storage_bucket": "cityapp-5a6b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645444337466:android:77c7a585dbea9c56f31a03",
+        "android_client_info": {
+          "package_name": "com.example.city_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW-Wkd_rwvB5c1jtbFpOLYc9oT6NOud7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
