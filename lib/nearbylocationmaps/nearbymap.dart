@@ -41,7 +41,7 @@ class _nearbymapState extends State<nearbymap> with SingleTickerProviderStateMix
             indicatorColor: Colors.white,
             tabs: const [
               Tab(
-                icon: Icon(Icons.emoji_transportation),
+                icon: Icon(Icons.directions_bus),
               ),
               Tab(
                 icon: Icon(Icons.directions_railway),
