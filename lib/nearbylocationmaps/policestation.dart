@@ -102,7 +102,34 @@ class _policestationState extends State<policestation> {
           width: 80,
           height: 80,
           builder: (ctx) => GestureDetector(
-            onTap: () {},
+            onTap: () {
+            showDialog(
+            context: ctx,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Police Station: ${element[0]}'),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: <Widget>[
+                      Text('Distance: ${element[2]} Km'),
+                      Text('Latitude: ${element[1][0]}'),
+                      Text('Longitude: ${element[1][1]}'),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('Navigate'),
+                    onPressed: () {
+                      launchUrl(Uri.parse("https://www.google.com/maps/search/?api=1&query=${element[1][0]},${element[1][1]}"));
+
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
             child: const Icon(
               Icons.local_police_outlined,
               size: 30,

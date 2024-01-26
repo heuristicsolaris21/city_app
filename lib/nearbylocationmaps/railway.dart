@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart' as lt;
 import 'package:url_launcher/url_launcher.dart';
+
 class railway extends StatefulWidget {
   const railway({super.key});
 
@@ -102,7 +103,33 @@ class _railwayState extends State<railway> {
           width: 80,
           height: 80,
           builder: (ctx) => GestureDetector(
-            onTap: () {},
+            onTap: () {showDialog(
+            context: ctx,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Rail Ways: ${element[0]}'),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: <Widget>[
+                      Text('Distance: ${element[2]} Km'),
+                      Text('Latitude: ${element[1][0]}'),
+                      Text('Longitude: ${element[1][1]}'),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('Navigate'),
+                    onPressed: () {
+                      launchUrl(Uri.parse("https://www.google.com/maps/search/?api=1&query=${element[1][0]},${element[1][1]}"));
+
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
             child: const Icon(
               Icons.directions_railway_sharp,
               size: 30,
