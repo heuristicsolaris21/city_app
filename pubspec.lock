@@ -310,6 +310,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_geofire:
+    dependency: "direct main"
+    description:
+      name: flutter_geofire
+      sha256: "756588ac6ee477d59cb6516a49f69a7306d35765c7de738ec894d77359d4de79"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -644,10 +652,17 @@ packages:
     dependency: transitive
     description:
       name: meta
+<<<<<<< HEAD
+      sha256: a6e590c838b18133bb482a2745ad77c5bb7715fb0451209e1a7567d416678b8e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.10.0"
+=======
       sha256: d584fa6707a52763a52446f02cc621b077888fb63b93bbcb1143a7be5a0c0c04
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
+>>>>>>> 3804434565d8ac3b4422286587e91dbd4485d39d
   mgrs_dart:
     dependency: transitive
     description:
@@ -968,11 +983,19 @@ packages:
   vm_service:
     dependency: transitive
     description:
+<<<<<<< HEAD
+      name: web
+      sha256: afe077240a270dcfd2aafe77602b4113645af95d0ad31128cc02bce5ac5d5152
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
+=======
       name: vm_service
       sha256: b3d56ff4341b8f182b96aceb2fa20e3dcb336b9f867bc0eafc0de10f1048e957
       url: "https://pub.dev"
     source: hosted
     version: "13.0.0"
+>>>>>>> 3804434565d8ac3b4422286587e91dbd4485d39d
   webview_flutter:
     dependency: "direct main"
     description:
@@ -1038,5 +1061,10 @@ packages:
     source: hosted
     version: "6.3.0"
 sdks:
+<<<<<<< HEAD
+  dart: ">=3.2.0-194.0.dev <4.0.0"
+  flutter: ">=3.13.0"
+=======
   dart: ">=3.2.0 <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"
+>>>>>>> 3804434565d8ac3b4422286587e91dbd4485d39d
