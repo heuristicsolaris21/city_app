@@ -1,4 +1,5 @@
 import 'package:city_app/admin/adminhome.dart';
+import 'package:city_app/garbagetruck/garbagetrucklogin.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,7 +49,7 @@ class _adminloginState extends State<adminlogin> {
                     padding: EdgeInsets.only(top: screenHeight * 0.35),
                     child: Container(
                       width: screenWidth * 0.85,
-                      height: screenHeight * 0.3, // Adjust the width as needed
+                      height: screenHeight * 0.35, // Adjust the width as needed
                       padding: const EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
                         color: Colors.blue[50],
@@ -155,6 +156,33 @@ class _adminloginState extends State<adminlogin> {
                                 ),
                               ),
                             ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => garbagetrucklogin(),
+                                  ),
+                                );
+                              },
+                              style: ButtonStyle(
+                                side: MaterialStateProperty.all<BorderSide>(
+                                    BorderSide(color: Colors.black)),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        10.0), // Set the border radius here
+                                  ),
+                                ),
+                              ),
+                              child: Text(
+                                "Garbage Truck Login",
+                                style: GoogleFonts.jost(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -167,11 +195,11 @@ class _adminloginState extends State<adminlogin> {
                     padding: EdgeInsets.only(
                         top: 100), // Adjust this value as needed
                     child: Image.asset(
-                    'assets/cityapplogo.png',
-                    width: 300,
-                    height: 300,
-                    // fit: BoxFit.cover,
-                  ),
+                      'assets/cityapplogo.png',
+                      width: 300,
+                      height: 300,
+                      // fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ],

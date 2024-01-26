@@ -102,8 +102,10 @@ class _menupageState extends State<menupage> {
                   onPressed: () {
                     Navigator.pop(context); // Close the dialog
                   },
-                  style: TextButton.styleFrom(
-                    primary: Colors.white, // Text color
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                      Colors.white,
+                    ),
                   ),
                   child: Text('Cancel'),
                 ),
@@ -118,9 +120,10 @@ class _menupageState extends State<menupage> {
                       ),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(
-                        255, 0, 140, 255), // Background color
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(255, 0, 140, 255),
+                    ),
                   ),
                   child: Text('Confirm'),
                 ),
@@ -232,7 +235,7 @@ class _menupageState extends State<menupage> {
                               screenHeight * 0.15,
                               'Nearby Locations',
                               nearbymap(),
-                              Icons.pin_drop),
+                              Icons.pin),
                           Spacer(),
                           buildContainer(
                               screenWidth * 0.30,
