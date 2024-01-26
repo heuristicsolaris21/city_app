@@ -104,7 +104,7 @@ class _adminhomeState extends State<adminhome> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(

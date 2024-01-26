@@ -34,18 +34,14 @@ class _homescreenState extends State<homescreen>
           backgroundColor: const Color.fromARGB(255, 11, 51, 83),
           title: Row(
             children: [
-              // Add your image widget here
               Image.asset(
-                'assets/cityapplogo.png', // Replace with your logo image asset
+                'assets/cityapplogo.png',
                 width: 100,
                 height: 100,
-                // You can also use other properties like fit, alignment, etc.
               ),
-              
             ],
           ),
           actions: [
-            
             IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
@@ -78,7 +74,7 @@ class _homescreenState extends State<homescreen>
         body: TabBarView(
           controller: _controller,
           children: [
-            Community(),
+            Community(username: widget.username,),
             menupage(username: widget.username),
             feedscreen(username: widget.username),
           ],

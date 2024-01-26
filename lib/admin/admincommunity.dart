@@ -3,22 +3,26 @@ import 'package:city_app/screens/communitychat.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class Community extends StatefulWidget {
-  Community({required this.username, super.key});
+
+class AdminCommunity extends StatefulWidget {
+  AdminCommunity({required this.username, super.key});
   String username;
   @override
-  State<Community> createState() => _CommunityState();
+  State<AdminCommunity> createState() => _CommunityState();
 }
 
-class _CommunityState extends State<Community> {
+class _CommunityState extends State<AdminCommunity> {
   final TextEditingController _searchController = TextEditingController();
   final databaseReference =
       FirebaseDatabase.instance.reference().child('community');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 11, 51, 83),
+        title: Text("Community"),
+      ),
       body: Column(
         children: [
           Padding(

@@ -200,14 +200,14 @@ class _menupageState extends State<menupage> {
                           buildContainer(
                               screenWidth * 0.30,
                               screenHeight * 0.15,
-                              'EVENTS',
+                              'Events',
                               const Events(),
                               Icons.event_available),
                           const Spacer(),
                           buildContainer(
                               screenWidth * 0.55,
                               screenHeight * 0.15,
-                              'NEWS',
+                              'News',
                               const NewsPage(),
                               Icons.newspaper
                               ),
@@ -221,7 +221,7 @@ class _menupageState extends State<menupage> {
                           buildContainer(
                               screenWidth * 0.55,
                               screenHeight * 0.15,
-                              'Evacuation Center',
+                              '###########',
                               const alerts(),
                               Icons.night_shelter_outlined),
                           Spacer(),
@@ -248,7 +248,7 @@ class _menupageState extends State<menupage> {
                           buildContainer(
                               screenWidth * 0.55,
                               screenHeight * 0.15,
-                              'EMPTY BUTTON',
+                              '##########',
                               alerts(),
                               Icons.flood_outlined),
                         ],

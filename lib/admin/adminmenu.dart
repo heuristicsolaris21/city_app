@@ -1,4 +1,8 @@
+import 'package:city_app/admin/admincommunity.dart';
+import 'package:city_app/admin/admincommunitychat.dart';
 import 'package:city_app/admin/adminsos.dart';
+import 'package:city_app/admin/createcommunity.dart';
+import 'package:city_app/screens/community.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
@@ -105,25 +109,23 @@ class _adminmenuState extends State<adminmenu> {
               // const SizedBox(
               //   height: 10,
               // ),
-              // Row(
-              //   children: [
-              //     buildContainer(
-              //         screenWidth * 0.30,
-              //         screenHeight * 0.15,
-              //         'Community',
-              //         AdminCommunity(
-              //           username: '',
-              //         ),
-              //         Icons.holiday_village_sharp),
-              //     Spacer(),
-              //     buildContainer(
-              //         screenWidth * 0.55,
-              //         screenHeight * 0.15,
-              //         'Community request',
-              //         admincommunityrequest(),
-              //         Icons.holiday_village_sharp),
-              //   ],
-              // ),
+              Row(
+                children: [
+                  buildContainer(
+                      screenWidth * 0.30,
+                      screenHeight * 0.15,
+                      'Community',
+                      AdminCommunity(username: widget.adminname),
+                      Icons.business_outlined),
+                  Spacer(),
+                  buildContainer(
+                      screenWidth * 0.55,
+                      screenHeight * 0.15,
+                      'Create Community',
+                      createcommunity(),
+                      Icons.add),
+                ],
+              ),
               // const SizedBox(
               //   height: 10,
               // ),
