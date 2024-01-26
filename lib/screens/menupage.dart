@@ -25,7 +25,7 @@ class _menupageState extends State<menupage> {
 
   double? _latitude;
   double? _longitude;
-
+  
   void initState() {
     super.initState();
     _loadMarkersFromDatabase();
