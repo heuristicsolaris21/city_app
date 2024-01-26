@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
-
 class menupage extends StatefulWidget {
   menupage({required this.username, super.key});
 
@@ -48,7 +47,7 @@ class _menupageState extends State<menupage> {
         return;
       }
     }
-    try{
+    try {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
@@ -69,9 +68,8 @@ class _menupageState extends State<menupage> {
     databaseReference.child('wastemanagement/${widget.username}').set({
       'latitude': _latitude,
       'longitude': _longitude,
-      'fcmtoken':fCMToken,
+      'fcmtoken': fCMToken,
     });
-
   }
 
   void sospressed() {
@@ -122,9 +120,10 @@ class _menupageState extends State<menupage> {
                       ),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(
-                        255, 0, 140, 255), // Background color
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(255, 0, 140, 255),
+                    ),
                   ),
                   child: Text('Confirm'),
                 ),
@@ -211,8 +210,7 @@ class _menupageState extends State<menupage> {
                               screenHeight * 0.15,
                               'News',
                               const NewsPage(),
-                              Icons.newspaper
-                              ),
+                              Icons.newspaper),
                         ],
                       ),
                       const SizedBox(
@@ -225,7 +223,7 @@ class _menupageState extends State<menupage> {
                               screenHeight * 0.15,
                               'Nearby Locations',
                               nearbymap(),
-                              Icons.pin_drop),
+                              Icons.pin),
                           Spacer(),
                           buildContainer(
                               screenWidth * 0.30,

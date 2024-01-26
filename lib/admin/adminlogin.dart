@@ -1,4 +1,5 @@
 import 'package:city_app/admin/adminhome.dart';
+import 'package:city_app/garbagetruck/garbagetrucklogin.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -156,8 +157,13 @@ class _adminloginState extends State<adminlogin> {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: (){
-
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => garbagetrucklogin(),
+                                  ),
+                                );
                               },
                               style: ButtonStyle(
                                 side: MaterialStateProperty.all<BorderSide>(
@@ -189,11 +195,11 @@ class _adminloginState extends State<adminlogin> {
                     padding: EdgeInsets.only(
                         top: 100), // Adjust this value as needed
                     child: Image.asset(
-                    'assets/cityapplogo.png',
-                    width: 300,
-                    height: 300,
-                    // fit: BoxFit.cover,
-                  ),
+                      'assets/cityapplogo.png',
+                      width: 300,
+                      height: 300,
+                      // fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ],
