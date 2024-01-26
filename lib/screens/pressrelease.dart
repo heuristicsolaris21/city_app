@@ -19,7 +19,8 @@ class _pressState extends State<press> {
   }
 
   fetchNews() async {
-    final response = await http.get(Uri.parse('https://kovai-news-api.onrender.com/getNews'));
+    final response = await http
+        .get(Uri.parse('https://kovai-news-api.onrender.com/getNews'));
     if (response.statusCode == 200) {
       setState(() {
         newsData = json.decode(response.body);
@@ -50,19 +51,102 @@ class _pressState extends State<press> {
         body: ListView.builder(
           itemCount: newsData.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              leading: Image.network(newsData[index]['image']),
-              title: Text(newsData[index]['headline']),
-              subtitle: Text(newsData[index]['content']),
-              trailing: IconButton(
-                icon: Icon(Icons.picture_as_pdf),
-                onPressed: () async {
-                  if (await canLaunch(newsData[index]['pdfLink'])) {
-                    await launch(newsData[index]['pdfLink']);
-                  } else {
-                    throw 'Could not launch PDF';
-                  }
-                },
+            return Padding(
+              padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+              child: Container(
+                child: Center(
+                  child: Card(
+                    elevation: 5, // Add elevation for a shadow effect
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(10.0), // Add rounded corners
+                    ),
+                    child: InkWell(
+                      onTap: () async {
+                        if (await canLaunchUrl(
+                            Uri.parse(newsData[index]['pdfLink']))) {
+                          await launchUrl(
+                              Uri.parse(newsData[index]['pdfLink']));
+                        } else {
+                          throw 'Could not launch';
+                        }
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10.0),
+                              topRight: Radius.circular(10.0),
+                            ),
+                            child: newsData[index]['image'] != null &&
+                                    newsData[index]['image'].isNotEmpty
+                                ? Image.network(
+                                    newsData[index]['image'],
+                                    height: 150, // Adjust the height as needed
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    'assets/cityapplogo.png', // Replace with your default image asset
+                                    height: 150, // Adjust the height as needed
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 8),
+                                Text(
+                                  newsData[index]['headline'],
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  newsData[index]['content'],
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'PDF',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.picture_as_pdf),
+                                  onPressed: () async {
+                                    if (await canLaunchUrl(Uri.parse(
+                                        newsData[index]['pdfLink']))) {
+                                      await launchUrl(Uri.parse(
+                                          newsData[index]['pdfLink']));
+                                    } else {
+                                      throw 'Could not launch';
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
             );
           },
