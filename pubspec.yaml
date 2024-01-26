@@ -52,6 +52,7 @@ dependencies:
   flutter_map: ^5.0.0
   flutter_svg: ^2.0.9
   url_launcher: ^6.2.4
+  html: ^0.15.4
 
 
 dev_dependencies:

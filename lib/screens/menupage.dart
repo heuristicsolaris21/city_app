@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:city_app/screens/alerts.dart';
+import 'package:city_app/screens/chat.dart';
 import 'package:city_app/screens/events.dart';
 import 'package:city_app/screens/news.dart';
-import 'package:city_app/screens/sosuser.dart';
+import 'package:city_app/screens/sos.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -200,7 +201,7 @@ class _menupageState extends State<menupage> {
                               screenWidth * 0.30,
                               screenHeight * 0.15,
                               'EVENTS',
-                              const events(),
+                              const Events(),
                               Icons.event_available),
                           const Spacer(),
                           buildContainer(
@@ -232,26 +233,26 @@ class _menupageState extends State<menupage> {
                               Icons.warning_amber_outlined),
                         ],
                       ),
-                      // const SizedBox(
-                      //   height: 15,
-                      // ),
-                      // Row(
-                      //   children: [
-                      //     buildContainer(
-                      //         screenWidth * 0.30,
-                      //         screenHeight * 0.15,
-                      //         'Weather',
-                      //         WeatherApp(),
-                      //         Icons.cloud_outlined),
-                      //     Spacer(),
-                      //     buildContainer(
-                      //         screenWidth * 0.55,
-                      //         screenHeight * 0.15,
-                      //         'Flooded Areas',
-                      //         floodmap(),
-                      //         Icons.flood_outlined),
-                      //   ],
-                      // ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          buildContainer(
+                              screenWidth * 0.30,
+                              screenHeight * 0.15,
+                              'Chat',
+                              chat(),
+                              Icons.chat_rounded),
+                          Spacer(),
+                          buildContainer(
+                              screenWidth * 0.55,
+                              screenHeight * 0.15,
+                              'EMPTY BUTTON',
+                              alerts(),
+                              Icons.flood_outlined),
+                        ],
+                      ),
                       // const SizedBox(
                       //   height: 15,
                       // ),

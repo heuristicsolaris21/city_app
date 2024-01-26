@@ -23,6 +23,7 @@ class _AuthScreenState extends State<AuthScreen> {
   var _enteredpassword = '';
   var _isAuthenticating = false;
   var _enteredUsername = '';
+  var _emernumber='';
   File? _selctedImageFile;
   final _form = GlobalKey<FormState>();
   var _isLogin = true;
@@ -74,6 +75,7 @@ class _AuthScreenState extends State<AuthScreen> {
           'username': _enteredUsername,
           'email': _enteredemail,
           'imageurl': imageUrl,
+          
         });
       }
     } on FirebaseAuthException catch (error) {
@@ -151,6 +153,24 @@ class _AuthScreenState extends State<AuthScreen> {
                                 },
                                 onSaved: (value) {
                                   _enteredPhoneNumber = value!;
+                                },
+                              ),
+                              if (!_isLogin)
+                              TextFormField(
+                                decoration: const InputDecoration(
+                                    labelText: 'Emergency Phone Number'),
+                                keyboardType: TextInputType.phone,
+                                validator: (value) {
+                                  if (value == null ||
+                                      value.trim().isEmpty ||
+                                      value.length != 10) {
+                                    return 'Enter a valid phone number';
+                                  }
+                                  // You can add custom validation for the phone number here
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  _emernumber = value!;
                                 },
                               ),
                             TextFormField(
@@ -236,7 +256,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     ),
                                   );
                                 },
-                                child: Text("ADMIN LOGIN")),
+                              child: Text("ADMIN LOGIN")),
                           ],
                         ),
                       ),

@@ -13,7 +13,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
-
 class addnewpost extends StatefulWidget {
   addnewpost({required this.username, super.key});
   String username;
@@ -63,18 +62,31 @@ class _addnewpostState extends State<addnewpost> {
   var PickedFile = null;
   bool _isProcessing = false;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
-      backgroundColor:const Color.fromARGB(255, 232, 233, 235),
+      backgroundColor: const Color.fromARGB(255, 232, 233, 235),
       appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 11, 51, 83),
-          title: const Text(
-            "Add new post",
-            style: TextStyle(fontSize: 0),
-          )),
+        backgroundColor: const Color.fromARGB(255, 11, 51, 83),
+        title: Row(
+          children: [
+            // Add your image widget here
+            Image.asset(
+              'assets/cityapplogo.png', // Replace with your logo image asset
+              width: 80,
+              height: 80,
+              // You can also use other properties like fit, alignment, etc.
+            ),
+            Spacer(),
+            const Text(
+              "Add new post",
+              style: TextStyle(fontSize: 20),
+            )
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -244,7 +256,7 @@ class _addnewpostState extends State<addnewpost> {
                 ),
               ),
             ),
-            if(_isProcessing2)
+            if (_isProcessing2)
               const CircularProgressIndicator(
                 color: Colors.red,
               ),
@@ -334,7 +346,7 @@ class _addnewpostState extends State<addnewpost> {
       'solved': 'false',
       'repostcount': '0',
       'adminphoto': '',
-      'adminusername':'0',
+      'adminusername': '0',
     });
     Navigator.push(
       context,
@@ -374,13 +386,10 @@ class _addnewpostState extends State<addnewpost> {
 
           var results = await http.Response.fromStream(response);
 
-        
           print('Results: ${results.body}');
 
-       
           var data = jsonDecode(results.body);
 
-          
           setState(() {
             prediction = data['result'];
           });

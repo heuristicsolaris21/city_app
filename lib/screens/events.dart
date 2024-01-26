@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class events extends StatefulWidget {
-  const events({super.key});
+class Events extends StatefulWidget {
+  const Events({super.key});
 
   @override
-  State<events> createState() => _eventsState();
+  State<Events> createState() => _EventsState();
 }
 
-class _eventsState extends State<events> {
+class _EventsState extends State<Events> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
