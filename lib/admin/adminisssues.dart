@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
-
 class adminissues extends StatefulWidget {
   adminissues({required this.adminusername, super.key});
   String adminusername;
@@ -36,20 +35,25 @@ class _adminissuesState extends State<adminissues> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => adminmyjobs(
-                                    adminusername: widget.adminusername),),
+                              builder: (context) => adminmyjobs(
+                                adminusername: widget.adminusername,
+                              ),
+                            ),
                           );
                         },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.blue, // This is the button color
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.blue, // This is the button color
+                          ),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Icon(Icons.work), // This is where the logo goes
                             SizedBox(
-                                width:
-                                    10), // Give some spacing between the logo and the text
+                              width:
+                                  10, // Give some spacing between the logo and the text
+                            ),
                             Text('My Jobs'),
                           ],
                         ),
@@ -64,8 +68,7 @@ class _adminissuesState extends State<adminissues> {
                   buildCard(
                     imagePath: 'assets/light.jpeg',
                     title: 'streetlight outages',
-                    description:
-                        'Complaints regarding Street Lights',
+                    description: 'Complaints regarding Street Lights',
                   ),
                   buildCard(
                     imagePath: 'assets/garbage.jpeg',
@@ -77,7 +80,6 @@ class _adminissuesState extends State<adminissues> {
                     title: 'Stagnent Water',
                     description: 'Complaints regarding Stagnent Water',
                   ),
-                  
                 ],
               ),
             ],

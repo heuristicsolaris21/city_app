@@ -104,8 +104,10 @@ class _menupageState extends State<menupage> {
                   onPressed: () {
                     Navigator.pop(context); // Close the dialog
                   },
-                  style: TextButton.styleFrom(
-                    primary: Colors.white, // Text color
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                      Colors.white,
+                    ),
                   ),
                   child: Text('Cancel'),
                 ),
