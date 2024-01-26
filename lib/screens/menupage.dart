@@ -3,6 +3,7 @@ import 'package:city_app/screens/alerts.dart';
 import 'package:city_app/screens/chat.dart';
 import 'package:city_app/screens/events.dart';
 import 'package:city_app/screens/news.dart';
+import 'package:city_app/screens/pressrelease.dart';
 import 'package:city_app/screens/sos.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -248,9 +249,9 @@ class _menupageState extends State<menupage> {
                           buildContainer(
                               screenWidth * 0.55,
                               screenHeight * 0.15,
-                              '##########',
-                              alerts(),
-                              Icons.flood_outlined),
+                              'Press release',
+                              press(),
+                              Icons.public_sharp),
                         ],
                       ),
                       // const SizedBox(
