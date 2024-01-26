@@ -228,11 +228,6 @@ class _AuthScreenState extends State<AuthScreen> {
                             if (_isAuthenticating) CircularProgressIndicator(),
                             if (!_isAuthenticating)
                               ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Theme.of(context)
-                                      .colorScheme
-                                      .primaryContainer,
-                                ),
                                 onPressed: _submit,
                                 child: Text(_isLogin ? "Login" : "Sign Up"),
                               ),

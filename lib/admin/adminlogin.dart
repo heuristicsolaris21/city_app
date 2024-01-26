@@ -48,7 +48,7 @@ class _adminloginState extends State<adminlogin> {
                     padding: EdgeInsets.only(top: screenHeight * 0.35),
                     child: Container(
                       width: screenWidth * 0.85,
-                      height: screenHeight * 0.3, // Adjust the width as needed
+                      height: screenHeight * 0.35, // Adjust the width as needed
                       padding: const EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
                         color: Colors.blue[50],
@@ -150,6 +150,28 @@ class _adminloginState extends State<adminlogin> {
                               ),
                               child: Text(
                                 "Login",
+                                style: GoogleFonts.jost(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: (){
+
+                              },
+                              style: ButtonStyle(
+                                side: MaterialStateProperty.all<BorderSide>(
+                                    BorderSide(color: Colors.black)),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        10.0), // Set the border radius here
+                                  ),
+                                ),
+                              ),
+                              child: Text(
+                                "Garbage Truck Login",
                                 style: GoogleFonts.jost(
                                   fontSize: 18,
                                 ),
