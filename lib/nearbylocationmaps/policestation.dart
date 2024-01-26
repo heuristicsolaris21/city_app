@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart' as lt;
 import 'package:url_launcher/url_launcher.dart';
 class policestation extends StatefulWidget {
@@ -17,9 +20,11 @@ class _policestationState extends State<policestation> {
   //list of markers
 
   List<Marker> markers = [];
+  List<dynamic> nearBy = [];
 
   void initState() {
     super.initState();
+    getBusStops();
     _myloco();
   }
 
@@ -64,6 +69,48 @@ class _policestationState extends State<policestation> {
       });
     } catch (e) {
       print(e);
+    }
+  }
+
+  //api call for nearby location
+
+  void getBusStops() async {
+    var myLatitude = 12.935026; //vettuvankeni 12.935026
+    var myLongitude = 80.2424442; //vettuvankeni 80.2424442
+    var myRadius =10000; //Meters (m)
+    // #1-hospitals
+    // #2-bus stops
+    // #3-railways
+    // #4-police station
+    // #5-petrol bunks
+    var myType = 4;
+
+    final response = await http.get(Uri.parse('https://dba4-2406-7400-bd-341-a00a-34ce-ba9a-7369.ngrok-free.app/near_by?lat=$myLatitude&lon=$myLongitude&rad=$myRadius&type=$myType'));
+
+    if (response.statusCode == 200) {
+      setState(() {
+        nearBy = jsonDecode(response.body);
+      });
+    } else {
+      throw Exception('Failed to load bus stops');
+    }
+    //loop to add in the marker
+    for (var element in nearBy) {
+      markers.add(
+        Marker(
+          point: lt.LatLng(element[1][0].toDouble(), element[1][1].toDouble()), // latitude and longitude
+          width: 80,
+          height: 80,
+          builder: (ctx) => GestureDetector(
+            onTap: () {},
+            child: const Icon(
+              Icons.local_police_outlined,
+              size: 30,
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
+          ),
+        ),
+      );
     }
   }
 

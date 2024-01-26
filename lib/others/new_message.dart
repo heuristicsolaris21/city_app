@@ -1,11 +1,6 @@
-import 'dart:convert';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class NewMeassage extends StatefulWidget {
   const NewMeassage({super.key});
@@ -28,6 +23,7 @@ class _NewMeassageState extends State<NewMeassage> {
     if (enteredMessaage.trim().isEmpty) {
       return;
     }
+    //sethu
     FocusScope.of(context).unfocus();
     _messaageController.clear();
     final user = FirebaseAuth.instance.currentUser!;
