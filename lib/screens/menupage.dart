@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:city_app/nearbylocationmaps/nearbymap.dart';
 import 'package:city_app/screens/alerts.dart';
 import 'package:city_app/screens/chat.dart';
@@ -10,8 +9,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:http/http.dart' as http;
-
 
 class menupage extends StatefulWidget {
   menupage({required this.username, super.key});
@@ -48,7 +45,7 @@ class _menupageState extends State<menupage> {
         return;
       }
     }
-    try{
+    try {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
@@ -69,9 +66,8 @@ class _menupageState extends State<menupage> {
     databaseReference.child('wastemanagement/${widget.username}').set({
       'latitude': _latitude,
       'longitude': _longitude,
-      'fcmtoken':fCMToken,
+      'fcmtoken': fCMToken,
     });
-
   }
 
   void sospressed() {
@@ -186,10 +182,22 @@ class _menupageState extends State<menupage> {
                             width: 10,
                           ),
                           const Expanded(
-                            child: Text(
-                              "Use this SOS feature responsibly and only in life-threatening situations.Long press to activate",
-                              maxLines: 5,
-                              style: TextStyle(fontSize: 20),
+                            child: Text.rich(
+                              TextSpan(
+                                text:
+                                    "Use this SOS feature responsibly and only in life-threatening situations. ",
+                                style: TextStyle(fontSize: 18),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: "Long press to activate.",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromARGB(255, 226, 23, 9)),
+                                  ),
+                                ],
+                              ),
+                              maxLines: 7,
                             ),
                           ),
                         ],
@@ -211,8 +219,7 @@ class _menupageState extends State<menupage> {
                               screenHeight * 0.15,
                               'News',
                               const NewsPage(),
-                              Icons.newspaper
-                              ),
+                              Icons.newspaper),
                         ],
                       ),
                       const SizedBox(
