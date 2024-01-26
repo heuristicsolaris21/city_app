@@ -130,13 +130,8 @@ class _pressState extends State<press> {
                                 IconButton(
                                   icon: Icon(Icons.picture_as_pdf),
                                   onPressed: () async {
-                                    if (await canLaunchUrl(Uri.parse(
-                                        newsData[index]['pdfLink']))) {
-                                      await launchUrl(Uri.parse(
-                                          newsData[index]['pdfLink']));
-                                    } else {
-                                      throw 'Could not launch';
-                                    }
+                                    launchUrl(
+                                        Uri.parse(newsData[index]['pdfLink']));
                                   },
                                 ),
                               ],

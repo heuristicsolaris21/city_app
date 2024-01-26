@@ -20,7 +20,7 @@ class _chatState extends State<chat> {
             children: [
 
               Image.asset(
-                'assets/cityapplogo.png', 
+                'assets/cityapplogo.png',
                 width: 80,
                 height: 100,
               ),

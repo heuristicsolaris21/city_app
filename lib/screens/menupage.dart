@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:city_app/nearbylocationmaps/nearbymap.dart';
 import 'package:city_app/screens/alerts.dart';
 import 'package:city_app/screens/chat.dart';
 import 'package:city_app/screens/events.dart';
@@ -222,9 +223,9 @@ class _menupageState extends State<menupage> {
                           buildContainer(
                               screenWidth * 0.55,
                               screenHeight * 0.15,
-                              '###########',
-                              const alerts(),
-                              Icons.night_shelter_outlined),
+                              'Nearby Locations',
+                              nearbymap(),
+                              Icons.pin_drop),
                           Spacer(),
                           buildContainer(
                               screenWidth * 0.30,
