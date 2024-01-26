@@ -8,12 +8,24 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Image.asset(
-          'assets/cityapplogo.png', 
-          width: 200,
-          height: 200, 
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/cityapplogo.png',
+              width: 200,
+              height: 200,
+            ),
+            SizedBox(height: 20), // Adjust the spacing as needed
+            Image.asset(
+              'assets/Hourglass.gif', // Update this path to your GIF file
+              width: 200,
+              height: 200,
+            ),
+          ],
         ),
       ),
     );
   }
 }
+

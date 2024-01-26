@@ -7,6 +7,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -34,7 +35,6 @@ class MyApp extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const SplashScreen();
           }
-
           if (snapshot.hasData) {
             return FutureBuilder(
               future: _fetchUserData(FirebaseAuth.instance.currentUser!.uid),
@@ -58,7 +58,6 @@ class MyApp extends StatelessWidget {
               },
             );
           }
-
           return const AuthScreen();
         },
       ),

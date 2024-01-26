@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'package:city_app/screens/alerts.dart';
+import 'package:city_app/screens/events.dart';
+import 'package:city_app/screens/news.dart';
 import 'package:city_app/screens/sosuser.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -191,23 +194,44 @@ class _menupageState extends State<menupage> {
                       const SizedBox(
                         height: 15,
                       ),
-                      // Row(
-                      //   children: [
-                      //     buildContainer(
-                      //         screenWidth * 0.55,
-                      //         screenHeight * 0.15,
-                      //         'Evacuation Center',
-                      //         const centers(),
-                      //         Icons.night_shelter_outlined),
-                      //     Spacer(),
-                      //     buildContainer(
-                      //         screenWidth * 0.30,
-                      //         screenHeight * 0.15,
-                      //         'Alerts',
-                      //         alerts(),
-                      //         Icons.warning_amber_outlined),
-                      //   ],
-                      // ),
+                      Row(
+                        children: [
+                          buildContainer(
+                              screenWidth * 0.30,
+                              screenHeight * 0.15,
+                              'EVENTS',
+                              const events(),
+                              Icons.event_available),
+                          const Spacer(),
+                          buildContainer(
+                              screenWidth * 0.55,
+                              screenHeight * 0.15,
+                              'NEWS',
+                              const NewsPage(),
+                              Icons.newspaper
+                              ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          buildContainer(
+                              screenWidth * 0.55,
+                              screenHeight * 0.15,
+                              'Evacuation Center',
+                              const alerts(),
+                              Icons.night_shelter_outlined),
+                          Spacer(),
+                          buildContainer(
+                              screenWidth * 0.30,
+                              screenHeight * 0.15,
+                              'Alerts',
+                              alerts(),
+                              Icons.warning_amber_outlined),
+                        ],
+                      ),
                       // const SizedBox(
                       //   height: 15,
                       // ),

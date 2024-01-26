@@ -1,5 +1,5 @@
 import 'package:city_app/screens/community.dart';
-import 'package:city_app/screens/feedscreen.dart';
+import 'package:city_app/screens/feed.dart';
 import 'package:city_app/screens/menupage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +80,7 @@ class _homescreenState extends State<homescreen>
           children: [
             Community(),
             menupage(username: widget.username),
-            feedscreen(),
+            feedscreen(username: widget.username),
           ],
         ),
       ),

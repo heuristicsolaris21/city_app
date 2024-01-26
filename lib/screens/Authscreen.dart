@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:city_app/admin/adminlogin.dart';
 import 'package:city_app/others/user_image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,7 +18,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  var _enteredPhoneNumber='';
+  var _enteredPhoneNumber = '';
   var _enteredemail = '';
   var _enteredpassword = '';
   var _isAuthenticating = false;
@@ -39,52 +40,56 @@ class _AuthScreenState extends State<AuthScreen> {
     }
     _form.currentState!.save();
     try {
-  setState(() {
-    _isAuthenticating = true;
-  });
+      setState(() {
+        _isAuthenticating = true;
+      });
 
-  if (_isLogin) {
-    // Sign in logic for Realtime Database
-    // You need to replace 'users' with your actual database node
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _enteredemail,
-      password: _enteredpassword,
-    );
-  } else {
-    // Sign up logic for Realtime Database
-    final userCredentials = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: _enteredemail,
-      password: _enteredpassword,
-    );
+      if (_isLogin) {
+        // Sign in logic for Realtime Database
+        // You need to replace 'users' with your actual database node
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _enteredemail,
+          password: _enteredpassword,
+        );
+      } else {
+        // Sign up logic for Realtime Database
+        final userCredentials =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _enteredemail,
+          password: _enteredpassword,
+        );
 
-    final DatabaseReference databaseRef = FirebaseDatabase.instance.reference().child('users');
+        final DatabaseReference databaseRef =
+            FirebaseDatabase.instance.reference().child('users');
 
-    final storageRef = FirebaseStorage.instance.ref().child('user_images').child('${userCredentials.user!.uid}.jpg');
-    await storageRef.putFile(_selctedImageFile!);
-    final imageUrl = await storageRef.getDownloadURL();
+        final storageRef = FirebaseStorage.instance
+            .ref()
+            .child('user_images')
+            .child('${userCredentials.user!.uid}.jpg');
+        await storageRef.putFile(_selctedImageFile!);
+        final imageUrl = await storageRef.getDownloadURL();
 
-    await databaseRef.child(userCredentials.user!.uid).set({
-      'phone' : _enteredPhoneNumber,
-      'username': _enteredUsername,
-      'email': _enteredemail,
-      'imageurl': imageUrl,
-    });
-  }
-} on FirebaseAuthException catch (error) {
-  if (error.code == 'email-already-in-use') {
-    // Handle email-already-in-use error if needed
-  }
-  ScaffoldMessenger.of(context).clearSnackBars();
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(error.message ?? 'Authentication Failed'),
-    ),
-  );
-  setState(() {
-    _isAuthenticating = false;
-  });
-}
-
+        await databaseRef.child(userCredentials.user!.uid).set({
+          'phone': _enteredPhoneNumber,
+          'username': _enteredUsername,
+          'email': _enteredemail,
+          'imageurl': imageUrl,
+        });
+      }
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'email-already-in-use') {
+        // Handle email-already-in-use error if needed
+      }
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.message ?? 'Authentication Failed'),
+        ),
+      );
+      setState(() {
+        _isAuthenticating = false;
+      });
+    }
   }
 
   @override
@@ -136,7 +141,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                     labelText: 'Phone Number'),
                                 keyboardType: TextInputType.phone,
                                 validator: (value) {
-                                  if (value == null || value.trim().isEmpty || value.length!=10) {
+                                  if (value == null ||
+                                      value.trim().isEmpty ||
+                                      value.length != 10) {
                                     return 'Enter a valid phone number';
                                   }
                                   // You can add custom validation for the phone number here
@@ -220,7 +227,16 @@ class _AuthScreenState extends State<AuthScreen> {
                                     ? 'Create an Account'
                                     : 'I already have an account'),
                               ),
-                            ElevatedButton(onPressed: (){}, child: Text("ADMIN LOGIN")),
+                            ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => adminlogin(),
+                                    ),
+                                  );
+                                },
+                                child: Text("ADMIN LOGIN")),
                           ],
                         ),
                       ),
