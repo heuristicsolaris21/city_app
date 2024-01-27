@@ -88,7 +88,7 @@ class _communitychatState extends State<communitychat> {
                     ),
                     Text(
                       "Admin: ${widget.Communityusername}    Phone NO: ${widget.phone}",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: Colors.white, fontSize: 15),
                     ),
                   ],
                 ),
@@ -154,7 +154,7 @@ class _communitychatState extends State<communitychat> {
                         ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
