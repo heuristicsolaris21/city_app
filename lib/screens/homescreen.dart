@@ -2,6 +2,7 @@ import 'package:city_app/screens/community.dart';
 import 'package:city_app/screens/feed.dart';
 import 'package:city_app/screens/menupage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class homescreen extends StatefulWidget {
@@ -9,10 +10,12 @@ class homescreen extends StatefulWidget {
       {required this.phone,
       required this.userphoto,
       required this.username,
+      required this.uid,
       super.key});
   String userphoto;
   String username;
   String phone;
+  String uid;
   @override
   State<homescreen> createState() => _homescreenState();
 }
@@ -20,11 +23,23 @@ class homescreen extends StatefulWidget {
 class _homescreenState extends State<homescreen>
     with SingleTickerProviderStateMixin {
   late TabController _controller;
+  // void abc() async{
+  //   final DatabaseReference data =
+  //           FirebaseDatabase.instance.reference().child('userscredits');
+  //   await data.child(widget.uid).set({
+  //         'phone': widget.phone,
+  //         'username': widget.username,
+  //         'email': '',
+  //         'imageurl': '',
+  //         'creditpoints': '0',
+  //       });
+  // }
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
     _controller = TabController(length: 3, vsync: this, initialIndex: 1);
+    // abc();
   }
   @override
   Widget build(BuildContext context) {

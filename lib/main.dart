@@ -32,25 +32,39 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (ctx, snapshot) {
+
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const SplashScreen();
           }
           if (snapshot.hasData) {
+            print("###################################################");
             return FutureBuilder(
               future: _fetchUserData(FirebaseAuth.instance.currentUser!.uid),
               builder: (context, userSnapshot) {
                 if (userSnapshot.connectionState == ConnectionState.waiting) {
                   return const SplashScreen();
                 }
-
-                if (userSnapshot.hasData) {
+                if (userSnapshot.hasData && userSnapshot.data != null) {
                   // Retrieve user data and pass it to HomeScreen
                   final userData = userSnapshot.data as Map<String, dynamic>;
-
+                  print("###################################################home1");
+                  String phone = userData['phone']??'';
+                  print(userData['phone']);
+                  print("###################################################home2");
+                  String userphoto = userData['imageurl']??'';
+                  print("###################################################home3");
+                  String username = userData['username'] ?? '';
+                  print("###################################################home4");
+                  String uid = FirebaseAuth.instance.currentUser!.uid;
+                  print("###################################################home5");
+                  if (phone=='' || phone==null){
+                    return const AuthScreen();
+                  }
                   return homescreen(
-                    phone: userData['phone'] as String,
-                    userphoto: userData['imageurl'] as String,
-                    username: userData['username'] as String,
+                    phone:phone,
+                    userphoto:userphoto,
+                    username:username,
+                    uid:uid,
                   );
                 } else {
                   return const AuthScreen();
@@ -66,12 +80,9 @@ class MyApp extends StatelessWidget {
 
   Future<Map<String, dynamic>> _fetchUserData(String userId) async {
   final snapshot = await FirebaseDatabase.instance.reference().child('users').child(userId).once();
-  
-  // Check if the snapshot exists and has data
   if (snapshot.snapshot.value != null && snapshot.snapshot.value is Map) {
     return Map<String, dynamic>.from(snapshot.snapshot.value as Map);
   } else {
-    // Return an empty map or handle the case where data is not available
     return {};
   }
   }
