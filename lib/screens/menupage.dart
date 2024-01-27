@@ -14,11 +14,12 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 class menupage extends StatefulWidget {
-  menupage({required this.username, super.key});
+  menupage({required this.uid,required this.username, super.key});
 
   @override
   State<menupage> createState() => _menupageState();
   String username;
+  String uid;
 }
 
 class _menupageState extends State<menupage> {
@@ -233,6 +234,7 @@ class _menupageState extends State<menupage> {
                       CarouselSlider(
                         options: CarouselOptions(
                           autoPlay: true,
+                          enlargeCenterPage: true,
                         ),
                         items: imageUrls.map((url) {
                           return Builder(
@@ -326,7 +328,7 @@ class _menupageState extends State<menupage> {
                       Row(
                         children: [
                           bbbb(screenWidth * 0.68, screenHeight * 0.08,
-                              'Social', social(), Icons.eco),
+                              'Social', Social(uid: widget.uid,username: widget.username,), Icons.eco),
                           Spacer(),
                           bbbb(screenWidth * 0.18, screenHeight * 0.08, '',
                               shop(), Icons.shopping_bag_outlined),
@@ -359,9 +361,10 @@ class _menupageState extends State<menupage> {
           borderRadius: BorderRadius.circular(10),
           gradient: const LinearGradient(
             colors: [
-              Color.fromARGB(255, 0, 0, 0),
+              Color.fromARGB(255, 10, 25, 56),
               Color.fromARGB(255, 11, 51, 83),
               Colors.blue,
+              // Color.fromARGB(255, 171, 217, 255),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

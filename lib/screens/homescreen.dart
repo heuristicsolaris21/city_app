@@ -73,7 +73,6 @@ class _homescreenState extends State<homescreen>
     _controller = TabController(length: 3, vsync: this, initialIndex: 1);
     abc();
   }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -151,7 +150,7 @@ class _homescreenState extends State<homescreen>
             Community(
               username: widget.username,
             ),
-            menupage(username: widget.username),
+            menupage(username: widget.username, uid: widget.uid,),
             feedscreen(username: widget.username),
           ],
         ),
