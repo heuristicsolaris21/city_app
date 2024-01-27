@@ -5,6 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart' as lt;
+// import 'dart:math';
 import 'package:url_launcher/url_launcher.dart';
 
 class bus extends StatefulWidget {
@@ -26,8 +27,8 @@ class _busState extends State<bus> {
 
   void initState() {
     super.initState();
-    getBusStops();
     _myloco();
+    // getBusStops();
   }
 
   // my current location
@@ -69,43 +70,77 @@ class _busState extends State<bus> {
           ),
         );
       });
+    getBusStops();
     } catch (e) {
       print(e);
     }
   }
 
-  //api call for nearby location
+  //api call for nearby distance location
 
-  void getBusStops() async {
-    var myLatitude = 12.935026; //vettuvankeni 12.935026
-    var myLongitude = 80.2424442; //vettuvankeni 80.2424442
-    var myRadius =10000; //Meters (m)
-    // #1-hospitals
-    // #2-bus stops
-    // #3-railways
-    // #4-police station
-    // #5-petrol bunks
-    var myType = 2;
 
-    final response = await http.get(Uri.parse('https://dba4-2406-7400-bd-341-a00a-34ce-ba9a-7369.ngrok-free.app/near_by?lat=$myLatitude&lon=$myLongitude&rad=$myRadius&type=$myType'));
+void getBusStops() async {
+  double myLatitude = _latitude!;//??11.0142615;//12.9220871;//12.935026; //vettuvankeni 12.935026
+  double myLongitude = _longitude!;//??76.802418;//80.0717557;//80.2424442; //vettuvankeni 80.2424442
+  var myRadius =10000; //Meters (m)
+  var myType = 2;
 
-    if (response.statusCode == 200) {
-      setState(() {
-        nearBy = jsonDecode(response.body);
-      });
-    } else {
-      throw Exception('Failed to load bus stops');
+  var facilityTags = {
+    1: "['amenity'='hospital']",
+    2: "['highway'='bus_stop']",
+    3: "['railway'='station']",
+    4: "['amenity'='police']",
+    5: "['amenity'='fuel']"
+  };
+  var places = {
+    1: "hospital",
+    2: "bus stop",
+    3: "station",
+    4: "station",
+    5: "bunk"
+  };
+
+  var endpoint = "http://overpass-api.de/api/interpreter";
+  var query = "[out:json];node(around:$myRadius,$myLatitude,$myLongitude)${facilityTags[myType]};out;";
+
+  final response = await http.post(Uri.parse(endpoint), body: query);
+
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body);
+    var nearBy = [];
+    var uniquePlace = [];
+
+    for (var node in data['elements']) {
+      if (node.containsKey('lat') && node.containsKey('lon') && node.containsKey('tags') && node['tags'].containsKey('name')) {
+      var lat2 = node['lat'];
+        var lon2 = node['lon'];
+
+        var distance = Geolocator.distanceBetween(myLatitude, myLongitude, lat2, lon2) / 1000; // div is for km
+
+        var name = node['tags']['name'].toLowerCase().contains(places[myType]!.toLowerCase())?node['tags']['name']:node['tags']['name']+" "+places[myType];
+
+        var temp = [
+          name,
+          [lat2, lon2],
+          distance.round()
+        ];
+
+        if (!uniquePlace.contains(node['tags']['name'].toLowerCase())) {
+          nearBy.add(temp);
+          uniquePlace.add(node['tags']['name'].toLowerCase());
+        }
+      }
     }
-    //loop to add in the marker
+
+    
     for (var element in nearBy) {
       markers.add(
         Marker(
-          point: lt.LatLng(element[1][0].toDouble(), element[1][1].toDouble()), // latitude and longitude
+          point: lt.LatLng(element[1][0].toDouble(), element[1][1].toDouble()), // latitude and longitude structure shown above
           width: 80,
           height: 80,
           builder: (ctx) => GestureDetector(
-            onTap: () {
-              showDialog(
+            onTap: () {showDialog(
             context: ctx,
             builder: (BuildContext context) {
               return AlertDialog(
@@ -131,10 +166,9 @@ class _busState extends State<bus> {
               );
             },
           );
-        
-            },
+        },
             child: const Icon(
-              Icons.bus_alert_sharp,
+              Icons.directions_bus,
               size: 30,
               color: Color.fromARGB(255, 0, 0, 0),
             ),
@@ -143,6 +177,11 @@ class _busState extends State<bus> {
       );
     }
   }
+  else {
+    throw Exception('Failed to load bus stops');
+  }
+}
+    
 
   @override
   Widget build(BuildContext context) {
