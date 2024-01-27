@@ -2,6 +2,7 @@ import 'package:city_app/admin/admincommunity.dart';
 import 'package:city_app/admin/admincommunitychat.dart';
 import 'package:city_app/admin/adminsos.dart';
 import 'package:city_app/admin/createcommunity.dart';
+import 'package:city_app/admin/creditrequest.dart';
 import 'package:city_app/screens/community.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -32,64 +33,64 @@ class _adminmenuState extends State<adminmenu> {
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => adminsos(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: screenWidth * 0.90,
-                      height: screenHeight * 0.15,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color.fromARGB(255, 197, 0, 0),
-                            Color.fromARGB(255, 132, 0, 0),
-                            Color.fromARGB(255, 197, 0, 0),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                      child: const Stack(
-                        children: [
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'SOS REQUESTS',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 19),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.sos,
-                                size: 100,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   children: [
+                  // InkWell(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) => adminsos(),
+                  //       ),
+                  //     );
+                  //   },
+                  //   child: Container(
+                  //     width: screenWidth * 0.90,
+                  //     height: screenHeight * 0.15,
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //       gradient: const LinearGradient(
+                  //         colors: [
+                  //           Color.fromARGB(255, 197, 0, 0),
+                  //           Color.fromARGB(255, 132, 0, 0),
+                  //           Color.fromARGB(255, 197, 0, 0),
+                  //         ],
+                  //         begin: Alignment.topLeft,
+                  //         end: Alignment.bottomRight,
+                  //       ),
+                  //     ),
+                  //     child: const Stack(
+                  //       children: [
+                  //         Align(
+                  //           alignment: Alignment.topLeft,
+                  //           child: Padding(
+                  //             padding: EdgeInsets.all(8.0),
+                  //             child: Text(
+                  //               'SOS REQUESTS',
+                  //               style: TextStyle(
+                  //                   color: Colors.white, fontSize: 19),
+                  //               maxLines: 2,
+                  //               overflow: TextOverflow.ellipsis,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         Align(
+                  //           alignment: Alignment.bottomRight,
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.all(8.0),
+                  //             child: Icon(
+                  //               Icons.sos,
+                  //               size: 100,
+                  //               color: Colors.white,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+              //   ],
+              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -126,19 +127,19 @@ class _adminmenuState extends State<adminmenu> {
                       Icons.add),
                 ],
               ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // Row(
-              //   children: [
-              //     buildContainer(
-              //         screenWidth * 0.90,
-              //         screenHeight * 0.15,
-              //         'Mark Flooded Area',
-              //         adminfloodmap(),
-              //         Icons.flood_outlined),
-              //   ],
-              // ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  buildContainer(
+                      screenWidth * 0.90,
+                      screenHeight * 0.15,
+                      'Social',
+                      CreditRequest(),
+                      Icons.eco),
+                ],
+              ),
               Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: Container(
@@ -196,11 +197,14 @@ class _adminmenuState extends State<adminmenu> {
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
             colors: [
-              const Color.fromARGB(255, 11, 51, 83),
-              Color.fromARGB(255, 101, 103, 2)
+              Color.fromARGB(255, 1, 20, 27),
+              Color.fromARGB(255, 2, 70, 96),
+              Color.fromARGB(255, 5, 135, 187),
+              Color.fromARGB(255, 255, 255, 255),
+               
             ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
         ),
         child: Stack(

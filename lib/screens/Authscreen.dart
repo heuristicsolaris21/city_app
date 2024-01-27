@@ -23,7 +23,6 @@ class _AuthScreenState extends State<AuthScreen> {
   var _enteredpassword = '';
   var _isAuthenticating = false;
   var _enteredUsername = '';
-  var _emernumber='';
   File? _selctedImageFile;
   final _form = GlobalKey<FormState>();
   var _isLogin = true;
@@ -31,7 +30,6 @@ class _AuthScreenState extends State<AuthScreen> {
     final _isvalid = _form.currentState!.validate();
 
     if (!_isvalid || !_isLogin && _selctedImageFile == null) {
-      //show error message..
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Upload Image'),
@@ -62,7 +60,8 @@ class _AuthScreenState extends State<AuthScreen> {
 
         final DatabaseReference databaseRef =
             FirebaseDatabase.instance.reference().child('users');
-
+        final DatabaseReference data =
+            FirebaseDatabase.instance.reference().child('userscredits');
         final storageRef = FirebaseStorage.instance
             .ref()
             .child('user_images')
@@ -75,7 +74,13 @@ class _AuthScreenState extends State<AuthScreen> {
           'username': _enteredUsername,
           'email': _enteredemail,
           'imageurl': imageUrl,
-          
+        });
+        await data.child(userCredentials.user!.uid).set({
+          'phone': _enteredPhoneNumber,
+          'username': _enteredUsername,
+          'email': _enteredemail,
+          'imageurl': imageUrl,
+          'creditpoints':'0',
         });
       }
     } on FirebaseAuthException catch (error) {
@@ -155,24 +160,24 @@ class _AuthScreenState extends State<AuthScreen> {
                                   _enteredPhoneNumber = value!;
                                 },
                               ),
-                              if (!_isLogin)
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                    labelText: 'Emergency Phone Number'),
-                                keyboardType: TextInputType.phone,
-                                validator: (value) {
-                                  if (value == null ||
-                                      value.trim().isEmpty ||
-                                      value.length != 10) {
-                                    return 'Enter a valid phone number';
-                                  }
-                                  // You can add custom validation for the phone number here
-                                  return null;
-                                },
-                                onSaved: (value) {
-                                  _emernumber = value!;
-                                },
-                              ),
+                              // if (!_isLogin)
+                              // TextFormField(
+                              //   decoration: const InputDecoration(
+                              //       labelText: 'Emergency Phone Number'),
+                              //   keyboardType: TextInputType.phone,
+                              //   validator: (value) {
+                              //     if (value == null ||
+                              //         value.trim().isEmpty ||
+                              //         value.length != 10) {
+                              //       return 'Enter a valid phone number';
+                              //     }
+                              //     // You can add custom validation for the phone number here
+                              //     return null;
+                              //   },
+                              //   onSaved: (value) {
+                              //     _emernumber = value!;
+                              //   },
+                              // ),
                             TextFormField(
                               decoration:
                                   const InputDecoration(labelText: 'Email'),
