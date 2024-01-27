@@ -149,30 +149,33 @@ class _addnewpostState extends State<addnewpost> {
                 child: Container(
                   height: 40,
                   width: 140,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          const Color.fromARGB(255, 11, 51, 83)),
-                    ),
-                    onPressed: () async {
-                      setState(() {
-                        _isProcessing = true;
-                      });
-                      await _pickImageFromCamera();
-                      await Future.delayed(Duration(seconds: 5));
-                      setState(() {
-                        _isProcessing = false;
-                      });
-                    },
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.camera_alt_rounded),
-                        Text(
-                          " Add photo",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ],
+                  child: Container(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            const Color.fromARGB(255, 11, 51, 83)),
+                      ),
+                      onPressed: () async {
+                        setState(() {
+                          _isProcessing = true;
+                        });
+                        await _pickImageFromCamera();
+                        await Future.delayed(Duration(seconds: 5));
+                        setState(() {
+                          _isProcessing = false;
+                        });
+                      },
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.camera_alt_rounded),
+                          Text(
+                            " Add photo",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
