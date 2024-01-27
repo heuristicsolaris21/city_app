@@ -79,6 +79,8 @@ class MyApp extends StatelessWidget {
   }
 
   Future<Map<String, dynamic>> _fetchUserData(String userId) async {
+  await Future.delayed(const Duration(seconds: 2));
+
   final snapshot = await FirebaseDatabase.instance.reference().child('users').child(userId).once();
   if (snapshot.snapshot.value != null && snapshot.snapshot.value is Map) {
     return Map<String, dynamic>.from(snapshot.snapshot.value as Map);

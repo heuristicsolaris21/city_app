@@ -23,7 +23,7 @@ class _menupageState extends State<menupage> {
 
   double? _latitude;
   double? _longitude;
-  
+
   void initState() {
     super.initState();
     _loadMarkersFromDatabase();
@@ -235,7 +235,7 @@ class _menupageState extends State<menupage> {
                               screenHeight * 0.15,
                               'Nearby Locations',
                               nearbymap(),
-                              Icons.pin),
+                              Icons.location_on_outlined),
                           Spacer(),
                           buildContainer(
                               screenWidth * 0.30,
@@ -284,10 +284,11 @@ class _menupageState extends State<menupage> {
                       //         emergency(),
                       //         Icons.emergency_outlined),
                       //   ],
-                      // ),
+                      //),
                       const SizedBox(
                         height: 15,
                       ),
+                      
                     ],
                   ),
                 ),
