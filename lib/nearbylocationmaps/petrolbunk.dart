@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart' as lt;
+import 'package:url_launcher/url_launcher.dart';
 
 class petrolbunk extends StatefulWidget {
   const petrolbunk({super.key});
@@ -18,9 +21,11 @@ class _petrolbunkState extends State<petrolbunk> {
   //list of markers
 
   List<Marker> markers = [];
+  List<dynamic> nearBy = [];
 
   void initState() {
     super.initState();
+    getBusStops();
     _myloco();
   }
 
@@ -65,6 +70,76 @@ class _petrolbunkState extends State<petrolbunk> {
       });
     } catch (e) {
       print(e);
+    }
+  }
+
+  //api call for nearby location
+
+  void getBusStops() async {
+    var myLatitude = 12.935026; //vettuvankeni 12.935026
+    var myLongitude = 80.2424442; //vettuvankeni 80.2424442
+    var myRadius =10000; //Meters (m)
+    // #1-hospitals
+    // #2-bus stops
+    // #3-railways
+    // #4-police station
+    // #5-petrol bunks
+    var myType = 5;
+
+    final response = await http.get(Uri.parse('https://dba4-2406-7400-bd-341-a00a-34ce-ba9a-7369.ngrok-free.app/near_by?lat=$myLatitude&lon=$myLongitude&rad=$myRadius&type=$myType'));
+
+    if (response.statusCode == 200) {
+      setState(() {
+        nearBy = jsonDecode(response.body);
+      });
+    } else {
+      throw Exception('Failed to load bus stops');
+    }
+    //loop to add in the marker
+    for (var element in nearBy) {
+      markers.add(
+        Marker(
+          point: lt.LatLng(element[1][0].toDouble(), element[1][1].toDouble()), // latitude and longitude
+          width: 80,
+          height: 80,
+          builder: (ctx) => GestureDetector(
+            onTap: () {
+              showDialog(
+            context: ctx,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Petrol Bunk: ${element[0]}'),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: <Widget>[
+                      Text('Distance: ${element[2]} Km'),
+                      Text('Latitude: ${element[1][0]}'),
+                      Text('Longitude: ${element[1][1]}'),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('Navigate'),
+                    onPressed: () {
+                      launchUrl(Uri.parse("https://www.google.com/maps/search/?api=1&query=${element[1][0]},${element[1][1]}"));
+
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        
+            },
+            child: const Icon(
+              Icons.local_gas_station_outlined,
+              size: 30,
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
+          ),
+        ),
+      );
     }
   }
 
