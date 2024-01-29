@@ -42,12 +42,12 @@ class _addnewpostState extends State<addnewpost> {
   }
 
   final TextEditingController _desc = TextEditingController();
-  String selectedValue = 'streetlight outages';
+  String selectedValue = 'Road Issues';
   List<String> options = [
-    'Pot Holes',
-    'streetlight outages',
-    'Waste Management',
-    'Stagnent Water',
+    'Road Issues',
+    'Electricity Issues',
+    'Garbage Management',
+    'Water Issues',
   ];
   void dispose() {
     _desc.dispose();

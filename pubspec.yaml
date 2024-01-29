@@ -56,6 +56,7 @@ dependencies:
   webview_flutter: ^4.4.4
   flutter_geofire: ^2.0.3
   carousel_slider: ^4.2.1
+  pie_chart: ^5.4.0
 
 
 dev_dependencies:

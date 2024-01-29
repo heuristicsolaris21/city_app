@@ -29,11 +29,13 @@ class _menupageState extends State<menupage> {
   List<String> imageUrls = [];
   double? _latitude;
   double? _longitude;
+  
 
   void initState() {
     super.initState();
-    _loadMarkersFromDatabase();
-    _fetchImageUrls();
+    _latitude=0.0;
+    // _loadMarkersFromDatabase();
+    // _fetchImageUrls();
   }
 
   void _fetchImageUrls() async {
