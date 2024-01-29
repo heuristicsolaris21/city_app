@@ -37,7 +37,6 @@ class _adminhomeState extends State<adminhome> {
       if (value is Map) {
         Map<String, dynamic> data = new Map<String, dynamic>.from(value);
         data.forEach((key, values) {
-          // assuming 'points' is a string
           setState(() {
             points = values['points'];
           });
@@ -50,7 +49,6 @@ class _adminhomeState extends State<adminhome> {
     } catch (e) {
       print(e.toString());
     }
-
     final databaseReference = FirebaseDatabase.instance.reference();
     final username = widget.adminusername;
     try {
@@ -128,38 +126,38 @@ class _adminhomeState extends State<adminhome> {
             ),
             backgroundColor: const Color.fromARGB(255, 11, 51, 83),
             actions: [
-            //   Padding(
-            //   padding: EdgeInsets.only(top: 10,bottom: 8),
-            //   child: Container(
-            //     decoration: BoxDecoration(
-            //       color: Color.fromARGB(255, 255, 255, 255),
-            //       borderRadius: BorderRadius.circular(
-            //           180.0), // You can adjust the radius for rounded corners
-            //     ),
-            //     padding: EdgeInsets.all(8.0), // You can adjust the padding
-            //     child: Row(
-            //       children: [
-            //         const Icon(
-            //           Icons.monetization_on,
-            //           color: Color.fromARGB(255, 217, 171, 6),
-            //         ), // This is the coin logo
-            //         SizedBox(width: 3),
-            //         Text(
-            //           points,
-            //           style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
+              Padding(
+              padding: EdgeInsets.only(top: 10,bottom: 8),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(
+                      180.0), // You can adjust the radius for rounded corners
+                ),
+                padding: EdgeInsets.all(8.0), // You can adjust the padding
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.monetization_on,
+                      color: Color.fromARGB(255, 217, 171, 6),
+                    ), // This is the coin logo
+                    SizedBox(width: 3),
+                    Text(
+                      points,
+                      style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15),
+                    ),
+                  ],
+                ),
+              ),
+            ),
               IconButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => adminmyjobs(adminusername: widget.adminusername),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => adminmyjobs(adminusername: widget.adminusername),
+                    ),
+                  );
                 },
                 icon: Icon(Icons.work),
               ),
@@ -203,7 +201,7 @@ class _adminhomeState extends State<adminhome> {
                     children: [
                       Icon(Icons.report),
                       SizedBox(width: 8), // Adjust the width as needed
-                      Text("Alerts")
+                      Text("Alerts"),
                     ],
                   ),
                 ),

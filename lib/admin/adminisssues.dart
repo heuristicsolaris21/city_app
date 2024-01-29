@@ -32,14 +32,14 @@ class _adminissuesState extends State<adminissues> {
                     child: Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => adminmyjobs(
-                          //       adminusername: widget.adminusername,
-                          //     ),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => adminmyjobs(
+                                adminusername: widget.adminusername,
+                              ),
+                            ),
+                          );
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
@@ -103,14 +103,14 @@ class _adminissuesState extends State<adminissues> {
       elevation: 10,
       child: InkWell(
         onTap: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //       builder: (context) => adminmaps(
-          //             cat: title,
-          //             adminusername: widget.adminusername,
-          //           )),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => adminmaps(
+                      cat: title,
+                      adminusername: widget.adminusername,
+                    )),
+          );
         },
         child: Stack(
           children: [
