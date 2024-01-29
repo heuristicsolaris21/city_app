@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:city_app/nearbylocationmaps/nearbymap.dart';
+import 'package:city_app/others/dummy.dart';
 import 'package:city_app/screens/alerts.dart';
 import 'package:city_app/screens/chat.dart';
 import 'package:city_app/screens/events.dart';
@@ -231,36 +232,36 @@ class _menupageState extends State<menupage> {
                       const SizedBox(
                         height: 10,
                       ),
-                      CarouselSlider(
-                        options: CarouselOptions(
-                          autoPlay: true,
-                          enlargeCenterPage: true,
-                        ),
-                        items: imageUrls.map((url) {
-                          return Builder(
-                            builder: (BuildContext context) {
-                              return Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 200,
-                                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  border: Border.all(
-                                      color: Colors.black, width: 2.0),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    url,
-                                    fit: BoxFit
-                                        .fill, // Change fit property to contain
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        }).toList(),
-                      ),
+                      // CarouselSlider(
+                      //   options: CarouselOptions(
+                      //     autoPlay: true,
+                      //     enlargeCenterPage: true,
+                      //   ),
+                      //   items: imageUrls.map((url) {
+                      //     return Builder(
+                      //       builder: (BuildContext context) {
+                      //         return Container(
+                      //           width: MediaQuery.of(context).size.width,
+                      //           height: 200,
+                      //           margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      //           decoration: BoxDecoration(
+                      //             borderRadius: BorderRadius.circular(10.0),
+                      //             border: Border.all(
+                      //                 color: Colors.black, width: 2.0),
+                      //           ),
+                      //           child: ClipRRect(
+                      //             borderRadius: BorderRadius.circular(8.0),
+                      //             child: Image.network(
+                      //               url,
+                      //               fit: BoxFit
+                      //                   .fill, // Change fit property to contain
+                      //             ),
+                      //           ),
+                      //         );
+                      //       },
+                      //     );
+                      //   }).toList(),
+                      // ),
                       const SizedBox(
                         height: 10,
                       ),
@@ -290,7 +291,8 @@ class _menupageState extends State<menupage> {
                               screenWidth * 0.55,
                               screenHeight * 0.15,
                               'Nearby Locations',
-                              nearbymap(),
+                              dummy(),
+                              // nearbymap(),
                               Icons.location_on_outlined),
                           Spacer(),
                           buildContainer(
@@ -310,30 +312,31 @@ class _menupageState extends State<menupage> {
                               screenWidth * 0.30,
                               screenHeight * 0.15,
                               'Chat',
-                              chat(),
+                              dummy(),
+                              // chat(),
                               Icons.chat_rounded),
                           Spacer(),
                           buildContainer(
                               screenWidth * 0.55,
                               screenHeight * 0.15,
                               'Press release',
-                              press(),
+                              dummy(),
+                              // press(),
                               Icons.public_sharp),
                         ],
                       ),
-                      
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        children: [
-                          bbbb(screenWidth * 0.68, screenHeight * 0.08,
-                              'Social', Social(uid: widget.uid,username: widget.username,), Icons.eco),
-                          Spacer(),
-                          bbbb(screenWidth * 0.18, screenHeight * 0.08, '',
-                              shop(), Icons.shopping_bag_outlined),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     bbbb(screenWidth * 0.68, screenHeight * 0.08,
+                      //         'Social', Social(uid: widget.uid,username: widget.username,), Icons.eco),
+                      //     Spacer(),
+                      //     bbbb(screenWidth * 0.18, screenHeight * 0.08, '',
+                      //         shop(), Icons.shopping_bag_outlined),
+                      //   ],
+                      // ),
                       const SizedBox(
                         height: 10,
                       ),

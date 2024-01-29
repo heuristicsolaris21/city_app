@@ -62,7 +62,7 @@ class _CreditRequestState extends State<CreditRequest> {
                             actions: <Widget>[
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.blue,
+                                  backgroundColor: Colors.blue,
                                 ),
                                 child: Text('Verify'),
                                 onPressed: () {
@@ -71,7 +71,7 @@ class _CreditRequestState extends State<CreditRequest> {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.blue,
+                                  backgroundColor: Colors.blue,
                                 ),
                                 child: Text('Delete'),
                                 onPressed: () {

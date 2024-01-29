@@ -3,6 +3,7 @@ import 'package:city_app/admin/admincommunitychat.dart';
 import 'package:city_app/admin/adminsos.dart';
 import 'package:city_app/admin/createcommunity.dart';
 import 'package:city_app/admin/creditrequest.dart';
+import 'package:city_app/others/dummy.dart';
 import 'package:city_app/screens/community.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -116,64 +117,66 @@ class _adminmenuState extends State<adminmenu> {
                       screenWidth * 0.30,
                       screenHeight * 0.15,
                       'Community',
-                      AdminCommunity(username: widget.adminname),
+                      // AdminCommunity(username: widget.adminname),
+                      dummy(),
                       Icons.business_outlined),
                   Spacer(),
                   buildContainer(
                       screenWidth * 0.55,
                       screenHeight * 0.15,
                       'Create Community',
-                      createcommunity(),
+                      dummy(),
+                      // createcommunity(),
                       Icons.add),
                 ],
               ),
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  buildContainer(
-                      screenWidth * 0.90,
-                      screenHeight * 0.15,
-                      'Social',
-                      CreditRequest(),
-                      Icons.eco),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 10),
-                child: Container(
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 255, 255, 255)),
-                  child: FirebaseAnimatedList(
-                    query: databaseReference.child('adminactivity'),
-                    itemBuilder: (BuildContext context, DataSnapshot snapshot,
-                        Animation<double> animation, int index) {
-                      var value = snapshot.value;
-                      if (value is Map) {
-                        Map<String, dynamic> adminActivity =
-                            value.cast<String, dynamic>();
+              // Row(
+              //   children: [
+              //     buildContainer(
+              //         screenWidth * 0.90,
+              //         screenHeight * 0.15,
+              //         'Social',
+              //         CreditRequest(),
+              //         Icons.eco),
+              //   ],
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.only(top: 10),
+              //   child: Container(
+              //     height: 200,
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //         color: const Color.fromARGB(255, 255, 255, 255)),
+              //     child: FirebaseAnimatedList(
+              //       query: databaseReference.child('adminactivity'),
+              //       itemBuilder: (BuildContext context, DataSnapshot snapshot,
+              //           Animation<double> animation, int index) {
+              //         var value = snapshot.value;
+              //         if (value is Map) {
+              //           Map<String, dynamic> adminActivity =
+              //               value.cast<String, dynamic>();
 
-                        return ListTile(
-                          leading: (adminActivity['status'] == 'true')
-                              ? Icon(Icons.check_circle, color: Colors.green)
-                              : Icon(Icons.cancel, color: Colors.red),
-                          title: Text(adminActivity['username']),
-                          subtitle: Text('Status: ${adminActivity['status']}'),
-                        );
-                      } else {
-                        return Image.asset(
-                          'assets/Hourglass.gif', // Update this path to your GIF file
-                          width: 200,
-                          height: 200,
-                        );
-                      }
-                    },
-                  ),
-                ),
-              ),
+              //           return ListTile(
+              //             leading: (adminActivity['status'] == 'true')
+              //                 ? Icon(Icons.check_circle, color: Colors.green)
+              //                 : Icon(Icons.cancel, color: Colors.red),
+              //             title: Text(adminActivity['username']),
+              //             subtitle: Text('Status: ${adminActivity['status']}'),
+              //           );
+              //         } else {
+              //           return Image.asset(
+              //             'assets/Hourglass.gif', // Update this path to your GIF file
+              //             width: 200,
+              //             height: 200,
+              //           );
+              //         }
+              //       },
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

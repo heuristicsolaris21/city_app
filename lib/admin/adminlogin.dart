@@ -156,33 +156,33 @@ class _adminloginState extends State<adminlogin> {
                                 ),
                               ),
                             ),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => garbagetrucklogin(),
-                                  ),
-                                );
-                              },
-                              style: ButtonStyle(
-                                side: MaterialStateProperty.all<BorderSide>(
-                                    BorderSide(color: Colors.black)),
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        10.0), // Set the border radius here
-                                  ),
-                                ),
-                              ),
-                              child: Text(
-                                "Garbage Truck Login",
-                                style: GoogleFonts.jost(
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) => garbagetrucklogin(),
+                            //       ),
+                            //     );
+                            //   },
+                            //   style: ButtonStyle(
+                            //     side: MaterialStateProperty.all<BorderSide>(
+                            //         BorderSide(color: Colors.black)),
+                            //     shape: MaterialStateProperty.all<
+                            //         RoundedRectangleBorder>(
+                            //       RoundedRectangleBorder(
+                            //         borderRadius: BorderRadius.circular(
+                            //             10.0), // Set the border radius here
+                            //       ),
+                            //     ),
+                            //   ),
+                            //   child: Text(
+                            //     "Garbage Truck Login",
+                            //     style: GoogleFonts.jost(
+                            //       fontSize: 18,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
