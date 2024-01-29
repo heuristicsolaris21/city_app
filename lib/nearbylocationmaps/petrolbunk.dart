@@ -173,6 +173,53 @@ void getBusStops() async {
         ),
       );
     }
+    
+
+final List<List<dynamic>> eV = [["Vari Energy Private Limited",11.1085898,76.7176036],["Charge Partners Charging Station",11.030196,76.6063552],["EV HUB",11.030196,76.6063552],["Electric Vehicle Charging Station",11.030196,76.6063552],["Hardware And Electrical",11.0581712,76.5226022],["Jio-bp pulse Charging Station",11.0581712,76.5226022],["Ather Grid Charging Station",11.0706536,76.861901],["Ather Grid Charging Station",10.9611632,76.8648695],["Ather Grid Charging Station",10.9388145,76.8363095],["FreCharge",10.9611632,76.7254259],["Ather Grid Charging Station",10.9611632,76.7254259]];
+for (var element in eV) {
+	var distance = Geolocator.distanceBetween(myLatitude, myLongitude, element[1], element[2]) / 1000;
+      markers.add(
+        Marker(
+          point: lt.LatLng(element[1].toDouble(), element[2].toDouble()), // latitude and longitude structure is shown above
+          width: 80,
+          height: 80,
+          builder: (ctx) => GestureDetector(
+            onTap: () {showDialog(
+            context: ctx,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('ev station: ${element[0]}'),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: <Widget>[
+                      Text('Distance: ${distance} Km'),
+                      Text('Latitude: ${element[1]}'),
+                      Text('Longitude: ${element[2]}'),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('Navigate'),
+                    onPressed: () {
+                      launchUrl(Uri.parse("https://www.google.com/maps/search/?api=1&query=${element[1]},${element[2]}"));
+
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
+            child: const Icon(
+              Icons.electric_bolt_sharp,
+              size: 30,
+              color: Color.fromARGB(255, 53, 53, 255),
+            ),
+          ),
+        ),
+      );
+    }
   }
   else {
     throw Exception('Failed to load bus stops');
