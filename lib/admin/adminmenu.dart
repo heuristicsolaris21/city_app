@@ -117,32 +117,32 @@ class _adminmenuState extends State<adminmenu> {
                       screenWidth * 0.30,
                       screenHeight * 0.15,
                       'Community',
-                      // AdminCommunity(username: widget.adminname),
-                      dummy(),
+                      AdminCommunity(username: widget.adminname),
+                      // dummy(),
                       Icons.business_outlined),
                   Spacer(),
                   buildContainer(
                       screenWidth * 0.55,
                       screenHeight * 0.15,
                       'Create Community',
-                      dummy(),
-                      // createcommunity(),
+                      // dummy(),
+                      createcommunity(),
                       Icons.add),
                 ],
               ),
               const SizedBox(
                 height: 10,
               ),
-              // Row(
-              //   children: [
-              //     buildContainer(
-              //         screenWidth * 0.90,
-              //         screenHeight * 0.15,
-              //         'Social',
-              //         CreditRequest(),
-              //         Icons.eco),
-              //   ],
-              // ),
+              Row(
+                children: [
+                  buildContainer(
+                      screenWidth * 0.90,
+                      screenHeight * 0.15,
+                      'Social',
+                      CreditRequest(),
+                      Icons.eco),
+                ],
+              ),
               // Padding(
               //   padding: EdgeInsets.only(top: 10),
               //   child: Container(

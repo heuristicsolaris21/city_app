@@ -43,7 +43,7 @@ class _adminissuesState extends State<adminissues> {
       dataMap.forEach((key, value) {
         bool isSolved = value['solved'] == 'true';
         if (widget.adminusername == 'ele' &&
-            value['selectedValue'] == 'Electricity Issues') {
+            value['selectedValue'] == 'Electricity Issues' || widget.adminusername=="admin1") {
           if (value['solved'] == 'false') {
             setState(() {
               notsolved++;
@@ -60,7 +60,7 @@ class _adminissuesState extends State<adminissues> {
             });
           }
         } else if (widget.adminusername == 'road' &&
-            value['selectedValue'] == 'Road Issues') {
+            value['selectedValue'] == 'Road Issues' || widget.adminusername=="admin1") {
           if (value['solved'] == 'false') {
             setState(() {
               notsolved++;
@@ -77,7 +77,7 @@ class _adminissuesState extends State<adminissues> {
             });
           }
         } else if (widget.adminusername == 'garbage' &&
-            value['selectedValue'] == 'Garbage Management') {
+            value['selectedValue'] == 'Garbage Management' || widget.adminusername=="admin1") {
           if (value['solved'] == 'false') {
             setState(() {
               notsolved++;
@@ -94,7 +94,7 @@ class _adminissuesState extends State<adminissues> {
             });
           }
         } else if (widget.adminusername == 'water' &&
-            value['selectedValue'] == 'Water Issues') {
+            value['selectedValue'] == 'Water Issues' || widget.adminusername=="admin1") {
           if (value['solved'] == 'false') {
             setState(() {
               notsolved++;
@@ -170,31 +170,31 @@ class _adminissuesState extends State<adminissues> {
                     SizedBox(
                       height: 20,
                     ),
-                    if (widget.adminusername == "road")
+                    if (widget.adminusername == "road" || widget.adminusername=="admin1")
                       buildCard(
                         imagePath: 'assets/pot.jpeg',
                         title: 'Road Issues',
                         description: 'Complaints regarding Road Damage',
                       ),
-                    if (widget.adminusername == "ele")
+                    if (widget.adminusername == "ele" || widget.adminusername=="admin1")
                       buildCard(
                         imagePath: 'assets/light.jpeg',
                         title: 'Electricity Issues',
                         description: 'Complaints regarding Street Lights',
                       ),
-                    if (widget.adminusername == "garbage")
+                    if (widget.adminusername == "garbage" || widget.adminusername=="admin1")
                       buildCard(
                         imagePath: 'assets/garbage.jpeg',
                         title: 'Garbage Management',
                         description: 'Complaints regarding Garbage overflow',
                       ),
-                    if (widget.adminusername == "water")
+                    if (widget.adminusername == "water" || widget.adminusername=="admin1")
                       buildCard(
                         imagePath: 'assets/road.jpeg',
                         title: 'Water Issues',
                         description: 'Complaints regarding Stagnent Water',
                       ),
-                    SizedBox(height: screenHeight*0.34,),
+                    SizedBox(height: 20,),
                     Container(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
@@ -248,6 +248,7 @@ class _adminissuesState extends State<adminissues> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 30,),
                   ],
                 ),
               ],

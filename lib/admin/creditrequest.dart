@@ -56,7 +56,6 @@ class _CreditRequestState extends State<CreditRequest> {
                                   'Description: ${value['description'] ?? ''}',
                                   style: TextStyle(fontSize: 16.0),
                                 ),
-                                
                               ],
                             ),
                             actions: <Widget>[
@@ -65,7 +64,50 @@ class _CreditRequestState extends State<CreditRequest> {
                                   backgroundColor: Colors.blue,
                                 ),
                                 child: Text('Verify'),
-                                onPressed: () {
+                                onPressed: () async {
+                                  var uid = value['uid'];
+                                  try {
+                                    DatabaseReference userCreditsRef =
+                                        FirebaseDatabase.instance
+                                            .reference()
+                                            .child('userscredits/$uid');
+
+                                    DatabaseEvent event =
+                                        await userCreditsRef.once();
+                                    DataSnapshot snapshot = event.snapshot;
+                                    var value = snapshot.value;
+
+                                    if (value != null && value is Map) {
+                                      String oldPointsString =
+                                          value['creditpoints'] ?? '0';
+                                      int oldPoints =
+                                          int.tryParse(oldPointsString) ?? 0;
+                                      int newPoints = oldPoints + 3;
+                                      await userCreditsRef.update({
+                                        'creditpoints': newPoints.toString()
+                                      });
+                                      print(
+                                          'Updated points for $uid: $newPoints');
+                                    } else {
+                                      print('No data found for $uid');
+                                    }
+                                  } catch (e) {
+                                    print('Error updating points: $e');
+                                  }
+                                  String key = snapshot.key ?? '';
+
+                                  try {
+                                    DatabaseReference socialCreditRef =
+                                        FirebaseDatabase.instance
+                                            .reference()
+                                            .child('socialcredit');
+                                    await socialCreditRef.child(key).remove();
+
+                                    print('Deleted data for key: $key');
+                                  } catch (e) {
+                                    print('Error deleting data: $e');
+                                  }
+
                                   Navigator.pop(context);
                                 },
                               ),
@@ -74,7 +116,21 @@ class _CreditRequestState extends State<CreditRequest> {
                                   backgroundColor: Colors.blue,
                                 ),
                                 child: Text('Delete'),
-                                onPressed: () {
+                                onPressed: () async {
+                                  // Close the dialog
+                                  String key = snapshot.key ?? '';
+
+                                  try {
+                                    DatabaseReference socialCreditRef =
+                                        FirebaseDatabase.instance
+                                            .reference()
+                                            .child('socialcredit');
+                                    await socialCreditRef.child(key).remove();
+
+                                    print('Deleted data for key: $key');
+                                  } catch (e) {
+                                    print('Error deleting data: $e');
+                                  }
                                   Navigator.pop(context);
                                 },
                               ),

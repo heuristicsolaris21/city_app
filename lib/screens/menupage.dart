@@ -14,9 +14,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
+
 class menupage extends StatefulWidget {
   menupage({required this.uid,required this.username, super.key});
-
   @override
   State<menupage> createState() => _menupageState();
   String username;
@@ -85,10 +85,10 @@ class _menupageState extends State<menupage> {
       print(e);
     }
     final databaseReference = FirebaseDatabase.instance.reference();
-    // databaseReference.child('livelocations/${widget.username}').set({
-    //   'latitude': _latitude,
-    //   'longitude': _longitude,
-    // });
+    databaseReference.child('livelocations/${widget.username}').set({
+      'latitude': _latitude,
+      'longitude': _longitude,
+    });
     databaseReference.child('wastemanagement/${widget.username}').set({
       'latitude': _latitude,
       'longitude': _longitude,
@@ -245,7 +245,7 @@ class _menupageState extends State<menupage> {
                               return Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: 200,
-                                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                margin: EdgeInsets.symmetric(horizontal: 4.0),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   border: Border.all(

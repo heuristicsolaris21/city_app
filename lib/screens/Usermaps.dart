@@ -21,20 +21,27 @@ class _usermapsState extends State<usermaps> {
   Future<void> _loadMarkersFromDatabase() async {
     getmarkers(
         const Icon(
-          Icons.water,
+          Icons.directions,
           size: 60,
-          color: Colors.blue,
+          color: Color.fromARGB(255, 144, 2, 2),
         ),
-        "Water Stagnated & Flooded Areas");
-    getmarkers(const Icon(Icons.business_sharp, size: 60),
-        "Drainage Leakage Detected");
+        "Road Issues");
+    getmarkers(const Icon(Icons.electric_bolt, size: 60,color: Color.fromARGB(255, 213, 232, 4),),
+        "Electricity Issues");
     getmarkers(
         const Icon(
-          Icons.close_outlined,
+          Icons.delete,
           size: 60,
-          color: Colors.red,
+          color: Color.fromARGB(255, 0, 0, 0),
         ),
-        "Infrastructure Damages");
+        "Garbage Management");
+    getmarkers(
+        const Icon(
+          Icons.waves,
+          size: 60,
+          color: Color.fromARGB(255, 6, 154, 239),
+        ),
+        "Water Issues");
   }
 
   Future<void> getmarkers(Icon icondata, String cat) async {

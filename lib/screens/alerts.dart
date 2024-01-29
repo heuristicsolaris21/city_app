@@ -41,7 +41,7 @@ class _alertsState extends State<alerts> {
                   }
                 },
                 itemBuilder: (BuildContext context, DataSnapshot snapshot,
-                    Animation<double> animation, int index) {
+                  Animation<double> animation, int index) {
                   Map<dynamic, dynamic>? value =
                       snapshot.value as Map<dynamic, dynamic>?;
                   if (value != null) {
