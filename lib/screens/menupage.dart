@@ -33,9 +33,9 @@ class _menupageState extends State<menupage> {
 
   void initState() {
     super.initState();
-    _latitude=0.0;
-    // _loadMarkersFromDatabase();
-    // _fetchImageUrls();
+    // _latitude=0.0;
+    _loadMarkersFromDatabase();
+    _fetchImageUrls();
   }
 
   void _fetchImageUrls() async {
