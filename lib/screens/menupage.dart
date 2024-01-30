@@ -4,6 +4,7 @@ import 'package:city_app/others/dummy.dart';
 import 'package:city_app/screens/alerts.dart';
 import 'package:city_app/screens/chat.dart';
 import 'package:city_app/screens/events.dart';
+import 'package:city_app/screens/fam.dart';
 import 'package:city_app/screens/news.dart';
 import 'package:city_app/screens/pressrelease.dart';
 import 'package:city_app/screens/shop.dart';
@@ -39,6 +40,7 @@ class _menupageState extends State<menupage> {
   }
 
   void _fetchImageUrls() async {
+    print(widget.username+"######################333");
     DatabaseEvent event = await dat.child('photosevents').once();
     DataSnapshot dataSnapshot = event.snapshot;
 
@@ -88,6 +90,7 @@ class _menupageState extends State<menupage> {
     databaseReference.child('livelocations/${widget.username}').set({
       'latitude': _latitude,
       'longitude': _longitude,
+      'canview':"sethu",
     });
     databaseReference.child('wastemanagement/${widget.username}').set({
       'latitude': _latitude,
@@ -273,7 +276,7 @@ class _menupageState extends State<menupage> {
                               screenWidth * 0.30,
                               screenHeight * 0.15,
                               'Events',
-                              const Events(),
+                              EventList(),
                               Icons.event_available),
                           const Spacer(),
                           buildContainer(
@@ -332,8 +335,10 @@ class _menupageState extends State<menupage> {
                       ),
                       Row(
                         children: [
-                          bbbb(screenWidth * 0.68, screenHeight * 0.08,
+                          bbbb(screenWidth * 0.50, screenHeight * 0.08,
                               'Social', Social(uid: widget.uid,username: widget.username,), Icons.eco),
+                              Spacer(),
+                          bbbb(screenWidth * 0.18,screenHeight * 0.08,"", Fam(username: widget.username,), Icons.person_pin_circle),
                           Spacer(),
                           bbbb(screenWidth * 0.18, screenHeight * 0.08, '',
                               shop(), Icons.shopping_bag_outlined),
